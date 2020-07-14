@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/contants/ui_constants.dart';
 import 'package:flutter_app/ui/pages/cities/cities_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -23,7 +24,7 @@ class HomePage extends StatelessWidget {
           SafeArea(
               child: Center(
                   child: Container(
-            constraints: BoxConstraints(maxWidth: 300.0),
+            constraints: BoxConstraints(maxWidth: maxPageWidth),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [

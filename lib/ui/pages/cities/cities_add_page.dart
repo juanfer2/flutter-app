@@ -1,17 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/contants/ui_constants.dart';
 import 'package:flutter_app/widgets/header_widget.dart';
-import 'package:flutter_app/ui/pages/cities/cities_add_page.dart';
 
-class CitiesPage extends StatelessWidget {
-  void handleNavigateTap(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (_) => CitiesAddPage(),
-      ),
-    );
-  }
-
+class CitiesAddPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,13 +10,13 @@ class CitiesPage extends StatelessWidget {
           elevation: 0,
           backgroundColor: Colors.white,
           iconTheme: IconThemeData(
-            color: primaryColor,
+            color: Colors.black,
           ),
         ),
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
           backgroundColor: primaryColor,
-          onPressed: () => handleNavigateTap(context),
+          onPressed: () {},
         ),
         body: Padding(
           padding: const EdgeInsets.all(20),
@@ -33,17 +24,7 @@ class CitiesPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               HeaderWidget(
-                title: 'Mis Ciudades',
-              ),
-              Expanded(
-                child: Center(
-                  child: Text(
-                    'No tiene ciudades',
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
-                  ),
-                ),
+                title: 'Agregar Ciudad',
               ),
             ],
           ),
