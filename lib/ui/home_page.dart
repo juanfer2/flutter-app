@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/ui/pages/cities/cities_page.dart';
 
 class HomePage extends StatelessWidget {
+  void handleNavigateTap(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => CitiesPage()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +32,7 @@ class HomePage extends StatelessWidget {
                   height: 50,
                 ),
                 const SizedBox(
-                  height: 50,
+                  height: 90,
                 ),
                 Text(
                   'Hola,\nBienvenido ',
@@ -33,11 +40,23 @@ class HomePage extends StatelessWidget {
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 30,
                 ),
                 Text(
-                  'Que te parce si agregamos\nuna nueva ciudad?',
+                  'Que te parece si agregamos\nuna nueva ciudad?',
                   textAlign: TextAlign.start,
+                ),
+                const SizedBox(
+                  height: 90,
+                ),
+                RaisedButton(
+                  color: Colors.white,
+                  elevation: 0,
+                  splashColor: Colors.transparent,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0)),
+                  child: Text('Agregar Ciudad'),
+                  onPressed: () => handleNavigateTap(context),
                 ),
               ],
             ),
