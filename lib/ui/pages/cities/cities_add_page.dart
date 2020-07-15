@@ -6,6 +6,7 @@ import 'package:flutter_app/models/city.dart';
 import 'package:flutter_app/services/weather_const_service.dart';
 import 'package:flutter_app/ui/pages/cities/debouncer.dart';
 import 'package:flutter_app/widgets/header_widget.dart';
+import 'package:flutter_app/widgets/loader_widget.dart';
 import 'package:http/http.dart' as http;
 
 class CitiesAddPage extends StatefulWidget {
@@ -17,18 +18,27 @@ class _CitiesAddPageState extends State<CitiesAddPage> {
   final debouncer = Debouncer();
 
   List<City> cities = [];
+  bool loanding = false;
 
   void onChangeText(String text) {
     debouncer.run(() {
-      requestSearch(text);
+      if (text.isEmpty)
+        setState(() {
+          cities = [];
+        });
+      if (text.isNotEmpty) requestSearch(text);
     });
   }
 
   void requestSearch(String text) async {
+    setState(() {
+      loanding = true;
+    });
     final url = '${api}search/?query=$text';
     final response = await http.get(url);
     final data = jsonDecode(response.body) as List;
     setState(() {
+      loanding = false;
       cities = data.map((e) => City.fromJson(e)).toList();
     });
     print(cities);
@@ -98,6 +108,13 @@ class _CitiesAddPageState extends State<CitiesAddPage> {
                   },
                 ),
               ),
+              if (loanding)
+                Center(
+                  child: LoaderWidget(),
+                )
+              // Center(
+              //   child: CircularProgressIndicator(),
+              // ),
             ],
           ),
         ));
