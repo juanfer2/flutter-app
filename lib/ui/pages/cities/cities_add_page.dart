@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/contants/ui_constants.dart';
+import 'package:flutter_app/models/city.dart';
 import 'package:flutter_app/services/weather_const_service.dart';
 import 'package:flutter_app/ui/pages/cities/debouncer.dart';
 import 'package:flutter_app/widgets/header_widget.dart';
@@ -15,6 +16,8 @@ class CitiesAddPage extends StatefulWidget {
 class _CitiesAddPageState extends State<CitiesAddPage> {
   final debouncer = Debouncer();
 
+  List<City> cities = [];
+
   void onChangeText(String text) {
     debouncer.run(() {
       requestSearch(text);
@@ -24,8 +27,11 @@ class _CitiesAddPageState extends State<CitiesAddPage> {
   void requestSearch(String text) async {
     final url = '${api}search/?query=$text';
     final response = await http.get(url);
-    final data = jsonDecode(response.body);
-    print(data);
+    final data = jsonDecode(response.body) as List;
+    setState(() {
+      cities = data.map((e) => City.fromJson(e)).toList();
+    });
+    print(cities);
   }
 
   @override
@@ -66,6 +72,30 @@ class _CitiesAddPageState extends State<CitiesAddPage> {
                         Icons.search,
                         color: Colors.grey,
                       )),
+                ),
+              ),
+              const SizedBox(
+                height: 25,
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: cities.length,
+                  itemBuilder: (context, index) {
+                    final city = cities[index];
+                    return ListTile(
+                      title: Text(
+                        city.title,
+                        style: TextStyle(fontWeight: FontWeight.w700),
+                      ),
+                      trailing: IconButton(
+                        icon: Icon(
+                          Icons.add,
+                          color: primaryColor,
+                        ),
+                        onPressed: () {},
+                      ),
+                    );
+                  },
                 ),
               ),
             ],
