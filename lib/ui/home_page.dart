@@ -35,10 +35,12 @@ class HomePage extends StatelessWidget {
                 const SizedBox(
                   height: 90,
                 ),
-                Text(
-                  'Hola,\nBienvenido ',
-                  textAlign: TextAlign.start,
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                Center(
+                  child: Text(
+                    'Hola,\nBienvenido ',
+                    textAlign: TextAlign.start,
+                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  ),
                 ),
                 const SizedBox(
                   height: 30,

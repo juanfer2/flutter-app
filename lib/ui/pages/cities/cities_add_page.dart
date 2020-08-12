@@ -73,15 +73,16 @@ class _CitiesAddPageState extends State<CitiesAddPage> {
                   //   print(value);
                   // },
                   decoration: InputDecoration(
-                      focusedBorder: InputBorder.none,
-                      border: InputBorder.none,
-                      filled: true,
-                      fillColor: Colors.grey[300],
-                      hintText: 'Buscar ciudad',
-                      prefixIcon: Icon(
-                        Icons.search,
-                        color: Colors.grey,
-                      )),
+                    focusedBorder: InputBorder.none,
+                    border: InputBorder.none,
+                    filled: true,
+                    fillColor: Colors.grey[300],
+                    hintText: 'Buscar ciudad',
+                    prefixIcon: Icon(
+                      Icons.search,
+                      color: Colors.grey,
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(
